@@ -1,3 +1,4 @@
+import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: const dalelApp());
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+    );
   }
 }
 
@@ -20,6 +24,6 @@ class dalelApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Image.asset(Assets.imagesDalel)));
+    return Scaffold(body: Center(child: Image.asset(Assets.imagesOnboarding1)));
   }
 }
