@@ -1,5 +1,6 @@
 import 'package:dalel_app/core/routes/app_router.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
+import 'package:dalel_app/core/utils/app_sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialApp.router(
       theme: ThemeData(scaffoldBackgroundColor: AppColors.offWhite),
       debugShowCheckedModeBanner: false,

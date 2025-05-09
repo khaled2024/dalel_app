@@ -1,34 +1,24 @@
-import 'package:dalel_app/core/utils/app_assets.dart';
+import 'package:dalel_app/core/functions/navigation.dart';
+import 'package:dalel_app/core/routes/app_router_constants.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
-import 'package:dalel_app/core/widgets/custom_btn.dart';
+import 'package:dalel_app/core/utils/app_sizeConfig.dart';
 import 'package:dalel_app/features/on_boarding/data/models/on_boardingModel.dart';
 import 'package:dalel_app/features/on_boarding/presentation/widgets/OnBoardingWidgetBody.dart';
 import 'package:dalel_app/features/on_boarding/presentation/widgets/customNavBarWidget.dart';
+import 'package:dalel_app/features/on_boarding/presentation/widgets/getOnboardingBtnsWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class OnBoardingView extends StatelessWidget {
-  OnBoardingView({super.key});
+class OnBoardingView extends StatefulWidget {
+  const OnBoardingView({super.key});
 
-  List<OnBoardingModel> onBoardingPages = [
-    OnBoardingModel(
-      image: Assets.imagesOnboarding1,
-      title: "Explore The history with Dalel in a smart way",
-      body:
-          "Using our app’s history libraries you can find many historical periods ",
-    ),
-    OnBoardingModel(
-      image: Assets.imagesOnboarding2,
-      title: "From every place on earth",
-      body: "A big variety of ancient places from all over the world",
-    ),
-    OnBoardingModel(
-      image: Assets.imagesOnboarding3,
-      title: "Using modern AI technology for better user experience",
-      body:
-          "AI provide recommendations and helps you to continue the search journey",
-    ),
-  ];
+  @override
+  State<OnBoardingView> createState() => _OnBoardingViewState();
+}
+
+class _OnBoardingViewState extends State<OnBoardingView> {
+  final PageController _pageController = PageController(initialPage: 0);
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +29,32 @@ class OnBoardingView extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
+            child: ListView(
+              physics: BouncingScrollPhysics(),
               children: [
                 SizedBox(height: 40),
-                CustomNavBarWidget(),
-                OnBoardingWidgetBody(onBoardingPages: onBoardingPages),
-                CustomBtn(
-                  onPressed: () {},
-                  color: AppColors.primaryColor,
-                  title: "Next",
+                CustomNavBarWidget(
+                  onTap: () {
+                    customPushReplacementNavigation(
+                      context,
+                      AppRouterConstants.signUpScreen,
+                    );
+                  },
                 ),
-                SizedBox(height: 17),
+                OnBoardingWidgetBody(
+                  onBoardingPages: onBoardingPages,
+                  pageController: _pageController,
+                  onchanged: (value) {
+                    currentIndex = value;
+                    print("current index is $currentIndex");
+                    setState(() {});
+                  },
+                ),
+                SizedBox(height: SizeConfig.screenH / 12),
+                getBottomBtns(
+                  currentIndex: currentIndex,
+                  pageController: _pageController,
+                ),
               ],
             ),
           ),

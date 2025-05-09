@@ -30,6 +30,9 @@ class _SplashViewState extends State<SplashView> {
 
 void deleyedNavigation(BuildContext context) {
   Future.delayed(Duration(seconds: 2), () {
-    customNavigation(context, AppRouterConstants.onBoardingScreen);
+    customPushReplacementNavigation(
+      context,
+      AppRouterConstants.onBoardingScreen,
+    );
   });
 }
