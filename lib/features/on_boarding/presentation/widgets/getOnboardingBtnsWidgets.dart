@@ -1,6 +1,9 @@
+import 'package:dalel_app/core/database/cash_helper/CashHelper.dart';
 import 'package:dalel_app/core/functions/navigation.dart';
 import 'package:dalel_app/core/routes/app_router_constants.dart';
+import 'package:dalel_app/core/services/service_locator.dart';
 import 'package:dalel_app/core/utils/app_colors.dart';
+import 'package:dalel_app/core/utils/app_constants.dart';
 import 'package:dalel_app/core/utils/app_textstyle.dart';
 import 'package:dalel_app/core/widgets/custom_btn.dart';
 import 'package:dalel_app/features/on_boarding/data/models/on_boardingModel.dart';
@@ -34,6 +37,10 @@ class getBottomBtns extends StatelessWidget {
         children: [
           CustomBtn(
             onPressed: () {
+              getIt<CashHelper>().saveData(
+                key: AppConstants.onBoardingVisited,
+                value: true,
+              );
               customPushReplacementNavigation(
                 context,
                 AppRouterConstants.signUpScreen,
@@ -44,6 +51,10 @@ class getBottomBtns extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
+              getIt<CashHelper>().saveData(
+                key: AppConstants.onBoardingVisited,
+                value: true,
+              );
               customPushReplacementNavigation(
                 context,
                 AppRouterConstants.loginScreen,

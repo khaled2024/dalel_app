@@ -1,5 +1,8 @@
+import 'package:dalel_app/core/database/cash_helper/CashHelper.dart';
 import 'package:dalel_app/core/functions/navigation.dart';
 import 'package:dalel_app/core/routes/app_router_constants.dart';
+import 'package:dalel_app/core/services/service_locator.dart';
+import 'package:dalel_app/core/utils/app_constants.dart';
 import 'package:dalel_app/core/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +16,14 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    deleyedNavigation(context);
+    bool onBoardingVisited =
+        getIt<CashHelper>().getData(key: AppConstants.onBoardingVisited) ??
+        false;
+    if (onBoardingVisited) {
+      deleyedNavigation(context, AppRouterConstants.homeScreen);
+    } else {
+      deleyedNavigation(context, AppRouterConstants.onBoardingScreen);
+    }
 
     super.initState();
   }
@@ -28,11 +38,8 @@ class _SplashViewState extends State<SplashView> {
   }
 }
 
-void deleyedNavigation(BuildContext context) {
+void deleyedNavigation(BuildContext context, String path) {
   Future.delayed(Duration(seconds: 2), () {
-    customPushReplacementNavigation(
-      context,
-      AppRouterConstants.onBoardingScreen,
-    );
+    customPushReplacementNavigation(context, path);
   });
 }
