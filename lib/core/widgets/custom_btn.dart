@@ -32,7 +32,7 @@ class CustomBtn extends StatelessWidget {
           style: AppTextStyle.poppins500Style24.copyWith(
             color: Colors.white,
             fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

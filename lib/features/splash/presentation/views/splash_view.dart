@@ -20,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
         getIt<CashHelper>().getData(key: AppConstants.onBoardingVisited) ??
         false;
     if (onBoardingVisited) {
-      deleyedNavigation(context, AppRouterConstants.homeScreen);
+      deleyedNavigation(context, AppRouterConstants.signUpScreen);
     } else {
       deleyedNavigation(context, AppRouterConstants.onBoardingScreen);
     }

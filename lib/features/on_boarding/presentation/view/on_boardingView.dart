@@ -63,6 +63,20 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 getBottomBtns(
                   currentIndex: _controller.currentIndex,
                   pageController: _controller.pageController,
+                  createAccTapped: () {
+                    _controller.saveOnboardingCashData();
+                    customPushReplacementNavigation(
+                      context,
+                      AppRouterConstants.signUpScreen,
+                    );
+                  },
+                  loginTapped: () {
+                    _controller.saveOnboardingCashData();
+                    customPushReplacementNavigation(
+                      context,
+                      AppRouterConstants.loginScreen,
+                    );
+                  },
                 ),
               ],
             ),

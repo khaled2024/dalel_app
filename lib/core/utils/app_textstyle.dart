@@ -22,4 +22,17 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: Colors.black,
   );
+
+  static final poppins600Style28 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+  static final poppins500Style17 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+    color: AppColors.deepGrey,
+  );
 }
